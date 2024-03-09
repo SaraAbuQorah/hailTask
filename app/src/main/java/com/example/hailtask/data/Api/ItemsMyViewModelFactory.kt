@@ -7,9 +7,9 @@ import com.example.hailtask.ui.items.ItemsViewModel
 
 
 @Suppress("UNCHECKED_CAST")
-class ItemsMyViewModelFactory (val repository: ItemsRepo ):
-    ViewModelProvider.Factory  {
+class ItemsMyViewModelFactory(val repository: ItemsRepo) :
+    ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return ItemsViewModel(repository) as T
     }
-    }
+}

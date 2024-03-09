@@ -8,7 +8,6 @@ class ItemsHelper {
     companion object {
         val BaseUrl="https://hail.website/api/"
         private val retrofit by lazy {
-
             Retrofit.Builder()
                 .baseUrl(BaseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
