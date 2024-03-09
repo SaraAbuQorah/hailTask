@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="data"
+            type="com.example.hailtask.data.model.Item" />
+        <variable
+            name="clickEvents"
+            type="com.example.hailtask.ui.items.ItemsAdapter.ItemsClickEvents" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:onClick="@{()->clickEvents.selected(data)}"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="380dp"
+                android:layout_height="238dp"
+                setItemsImage="@{data}"
+                android:background="@color/white"
+                android:padding="1px"
+                android:scaleType="fitXY"
+                android:src="@drawable/haiil" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="260dp"
+        android:src="@drawable/ic_shortcut_bookmark_borderz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="منتزه السمرا في حائل"
+        setItemsName="@{data}"
+        android:textSize="17sp"
+        android:textColor="#35221C"
+        android:layout_marginStart="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/locImg"
+        android:layout_width="11dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/locatio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/loc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="4dp"
+        android:text="جبل سمرا"
+        setItemsAddress="@{data}"
+        android:textColor="#767676"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/locImg"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

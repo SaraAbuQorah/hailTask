@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/firstFragment">
+
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.example.hailtask.ui.items.firstFragment"
+        android:label="firstFragment"
+        tools:layout="@layout/fragment_first"/>
+        <!--        <action-->
+        <!--            android:id="@+id/action_firstFragment_to_itemDetailsFragment"-->
+        <!--            app:destination="@id/itemDetailsFragment" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/itemDetailsFragment"-->
+<!--        android:name="com.example.hailtask.ui.itemDetails.ItemDetailsFragment"-->
+<!--        android:label="fragment_item_details"-->
+<!--        tools:layout="@layout/fragment_item_details" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_itemDetailsFragment_to_imageFragment"-->
+<!--            app:destination="@id/imageFragment" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/imageFragment"-->
+<!--        android:name="com.example.hailtask.ui.screenImage.ImageFragment"-->
+<!--        android:label="fragment_image"-->
+<!--        tools:layout="@layout/fragment_image" />-->
+
+</navigation>

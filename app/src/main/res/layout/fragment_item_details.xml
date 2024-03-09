@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.itemDetails.ItemDetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/Img"
+            android:layout_width="wrap_content"
+            android:layout_height="402dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/haiil" />
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="25dp"
+            android:src="@drawable/ic_shortcut_arrow_forward_ios"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.997"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:textAlignment="viewEnd"
+            android:layout_marginEnd="25dp"
+            android:text="منتزه السمرا في حائل"
+            android:textColor="#35221C"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.993"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Img" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="46dp"
+            android:src="@drawable/ic_shortcut_bookmark"
+            app:layout_constraintBottom_toTopOf="@+id/discDetails"
+            app:layout_constraintEnd_toStartOf="@+id/name"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Img"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/disc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="الوصف "
+            android:textAlignment="viewEnd"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.929"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/discDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="25dp"
+            android:text="تجربة السفر إلى حائل لا تكتمل دون تخصيص أوقات ممتعة للتجول في واحدة من أشهر وجهاتها السياحية، حديقة السمراء، الموجودة على سفوح الجبل الشهير جبل السمراء. "
+            android:textColor="#000000"
+            android:textAlignment="viewEnd"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/disc" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fullDisc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="عرض الوصف كامل "
+            android:textAlignment="viewEnd"
+            android:textColor="#C18E55"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.929"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/discDetails" />
+
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="25dp"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fullDisc"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_shortcut_laptop_chromebook" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/website"
+                    android:layout_width="62dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="11dp"
+                    android:textAlignment="center"
+                    android:text="الموقع الالكتروني"
+                    android:textColor="#000000"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.929"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/discDetails" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_shortcut_directions" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/locDirection"
+                    android:layout_width="62dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="11dp"
+                    android:textAlignment="center"
+                    android:text="الاتجاه الى الموقع"
+                    android:textColor="#000000"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.929"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/discDetails" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_shortcut_email" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/gmail"
+                    android:layout_width="62dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="11dp"
+                    android:textAlignment="center"
+                    android:text="البريد الالكتروني"
+                    android:textColor="#000000"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.929"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/discDetails" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_shortcut_call" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/call"
+                    android:layout_width="62dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="11dp"
+                    android:textAlignment="center"
+                    android:text="الاتصال"
+                    android:textColor="#000000"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.929"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/discDetails" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/timeImg"
+            android:layout_width="11dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/oclock"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.963"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="8dp"
+            android:text="الفتح"
+            android:textAlignment="viewEnd"
+            android:textColor="#454545"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/timeImg"
+            app:layout_constraintTop_toBottomOf="@+id/layout" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/openTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="19dp"
+            android:text="٩:٠٠ صباحا"
+            android:textAlignment="viewEnd"
+            android:textColor="#767676"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/open"
+            app:layout_constraintTop_toBottomOf="@+id/layout" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="32dp"
+            android:text="الفتح"
+            android:textAlignment="viewEnd"
+            android:textColor="#454545"
+            android:layout_marginBottom="16dp"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/openTime"
+            app:layout_constraintTop_toBottomOf="@+id/layout" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/closeTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="19dp"
+            android:text="٨:٠٠ مساءا"
+            android:layout_marginBottom="16dp"
+            android:textAlignment="viewEnd"
+            android:textColor="#767676"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/close"
+            app:layout_constraintTop_toBottomOf="@+id/layout" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/locImg"
+            android:layout_width="11dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/locatio"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.963"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timeImg" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/loc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="جبل سمرا"
+            android:textColor="#767676"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/locImg"
+            app:layout_constraintTop_toBottomOf="@+id/timeImg" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
