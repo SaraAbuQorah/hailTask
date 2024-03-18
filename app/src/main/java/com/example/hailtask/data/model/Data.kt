@@ -1,5 +1,7 @@
 package com.example.hailtask.data.model
 
+import com.example.hailtask.data.model.ItemDetailClass
+
 data class Data(
-    val items: List<Item>
+    val item_details: ItemDetailClass
 )

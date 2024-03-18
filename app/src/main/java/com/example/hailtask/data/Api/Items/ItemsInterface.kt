@@ -1,6 +1,6 @@
-package com.example.hailtask.data.Api
+package com.example.hailtask.data.Api.Items
 
-import com.example.hailtask.data.model.GetItems
+import com.example.hailtask.data.model.itemss.GetItems
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header

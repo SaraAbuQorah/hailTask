@@ -3,14 +3,9 @@ package com.example.hailtask.util
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hailtask.R
-import com.example.hailtask.data.model.Data
-import com.example.hailtask.data.model.GetItems
-import com.example.hailtask.data.model.Item
-import com.example.hailtask.ui.items.ItemsAdapter
-import com.example.hailtask.ui.items.ItemsViewModel
+import com.example.hailtask.data.model.itemss.Item
 
 @BindingAdapter("setItemsName")
 fun setItemsName(
@@ -23,7 +18,8 @@ fun setItemsName(
 
 @BindingAdapter("setItemsAddress")
 fun setItemsAddress(
-     textView: TextView,item:Item){
+     textView: TextView,item: Item
+){
      item.let {
           textView.text = item.address
      }
@@ -31,11 +27,30 @@ fun setItemsAddress(
 
 @BindingAdapter("setItemsImage")
 fun setItemsImage(
-     imageView: ImageView,item:Item){
+     imageView: ImageView,item: Item
+){
      item.let {
-          Glide.with(imageView.context).load(item.image)
+          val baseUrl = "https://hail.website"
+          val imageUrl = baseUrl + item.image
+          Glide.with(imageView.context).load(imageUrl)
                .placeholder(R.drawable.haiil)
                .into(imageView)
+     }
+}
+
+
+@BindingAdapter("setItemsButton")
+fun setItemsButton(
+     imageView: ImageView,item: Item
+){
+     item.let {
+          val imageResource = if (item.is_favorite == 0) {
+               R.drawable.ic_shortcut_bookmark_borderz
+          } else {
+               R.drawable.ic_shortcut_bookmark
+          }
+
+          imageView.setImageResource(imageResource)
      }
 }
 

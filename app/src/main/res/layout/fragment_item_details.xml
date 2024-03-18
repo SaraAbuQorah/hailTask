@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data >
+
+        <variable
+            name="Detdata"
+            type="com.example.hailtask.data.model.ItemDetailClass" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener"/>
+         </data>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,27 +17,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.itemDetails.ItemDetailsFragment">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/Img"
-            android:layout_width="wrap_content"
-            android:layout_height="402dp"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
             app:layout_constraintTop_toTopOf="parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/haiil" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            tools:ignore="MissingClass">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="12dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/image" />
+
+
+        </androidx.viewpager.widget.ViewPager>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="355dp"
+            app:tabBackground="@drawable/tab_layout"
+            app:tabGravity="fill"
+            android:layout_marginEnd="280dp"
+            android:textSize="10sp"
+            app:tabSelectedTextColor="@color/white"
+            android:background="#00000000"
+            app:tabIndicatorHeight="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+<!--        <com.google.android.material.imageview.ShapeableImageView-->
+<!--            android:id="@+id/Img"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="402dp"-->
+<!--            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            setItemDetImage="@{Detdata}"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:src="@drawable/haiil" />-->
 
         <ImageView
+            android:id="@+id/arrowBack1"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="25dp"
+            setItemOnClickArrowBack1="@{(v) -> click.onClick(v)}"
             android:src="@drawable/ic_shortcut_arrow_forward_ios"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,13 +99,14 @@
             android:layout_marginTop="25dp"
             android:textAlignment="viewEnd"
             android:layout_marginEnd="25dp"
+            setItemDetName="@{Detdata}"
             android:text="منتزه السمرا في حائل"
             android:textColor="#35221C"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.993"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Img" />
+            app:layout_constraintTop_toBottomOf="@+id/viewPager" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -56,12 +114,13 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="46dp"
+            setItemDetButton="@{Detdata}"
             android:src="@drawable/ic_shortcut_bookmark"
             app:layout_constraintBottom_toTopOf="@+id/discDetails"
             app:layout_constraintEnd_toStartOf="@+id/name"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Img"
+            app:layout_constraintTop_toBottomOf="@id/viewPager"
             app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -85,6 +144,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
+            setItemsDisc="@{Detdata}"
             android:text="تجربة السفر إلى حائل لا تكتمل دون تخصيص أوقات ممتعة للتجول في واحدة من أشهر وجهاتها السياحية، حديقة السمراء، الموجودة على سفوح الجبل الشهير جبل السمراء. "
             android:textColor="#000000"
             android:textAlignment="viewEnd"
@@ -112,21 +172,23 @@
             android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
             android:layout_marginTop="29dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
             android:orientation="horizontal"
             android:weightSum="4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fullDisc"
             app:layout_constraintVertical_bias="0.0">
 
             <LinearLayout
+                android:id="@+id/websiteLinear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                setItemsWebsite="@{Detdata}"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -141,8 +203,8 @@
                     android:layout_width="62dp"
                     android:layout_height="27dp"
                     android:layout_marginTop="11dp"
-                    android:textAlignment="center"
                     android:text="الموقع الالكتروني"
+                    android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -150,12 +212,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/discDetails" />
 
-
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/locDirectionLinear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                setItemsDirection="@{Detdata}"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -170,8 +233,8 @@
                     android:layout_width="62dp"
                     android:layout_height="27dp"
                     android:layout_marginTop="11dp"
-                    android:textAlignment="center"
                     android:text="الاتجاه الى الموقع"
+                    android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -182,10 +245,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/gmailLinear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                setItemsGmail="@{Detdata}"
                 android:orientation="vertical">
-
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="62dp"
                     android:layout_height="62dp"
@@ -198,8 +262,8 @@
                     android:layout_width="62dp"
                     android:layout_height="27dp"
                     android:layout_marginTop="11dp"
-                    android:textAlignment="center"
                     android:text="البريد الالكتروني"
+                    android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -210,30 +274,32 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/callLinear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    setItemscall="@{Detdata}"
+                    android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="62dp"
-                    android:layout_height="62dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_shortcut_call" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_shortcut_call" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/call"
-                    android:layout_width="62dp"
-                    android:layout_height="27dp"
-                    android:layout_marginTop="11dp"
-                    android:textAlignment="center"
-                    android:text="الاتصال"
-                    android:textColor="#000000"
-                    android:textSize="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.929"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/discDetails" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/call"
+                        android:layout_width="62dp"
+                        android:layout_height="27dp"
+                        android:layout_marginTop="11dp"
+                        android:text="الاتصال"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.929"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/discDetails" />
 
             </LinearLayout>
         </LinearLayout>
@@ -259,7 +325,7 @@
             android:text="الفتح"
             android:textAlignment="viewEnd"
             android:textColor="#454545"
-            android:textSize="17sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/timeImg"
             app:layout_constraintTop_toBottomOf="@+id/layout" />
 
@@ -269,24 +335,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="19dp"
-            android:text="٩:٠٠ صباحا"
+            android:text="٩:٠٠ "
+            setItemsTimeOpen="@{Detdata}"
             android:textAlignment="viewEnd"
             android:textColor="#767676"
-            android:textSize="17sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/open"
             app:layout_constraintTop_toBottomOf="@+id/layout" />
-
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="32dp"
-            android:text="الفتح"
+            android:text="الأغلاق"
             android:textAlignment="viewEnd"
             android:textColor="#454545"
             android:layout_marginBottom="16dp"
-            android:textSize="17sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/openTime"
             app:layout_constraintTop_toBottomOf="@+id/layout" />
 
@@ -296,15 +362,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="19dp"
-            android:text="٨:٠٠ مساءا"
+            setItemsTimeClose="@{Detdata}"
+            android:text="٨:٠٠ "
             android:layout_marginBottom="16dp"
             android:textAlignment="viewEnd"
             android:textColor="#767676"
-            android:textSize="17sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/close"
             app:layout_constraintTop_toBottomOf="@+id/layout" />
-
-        <androidx.appcompat.widget.AppCompatImageView
+     <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/locImg"
             android:layout_width="11dp"
             android:layout_height="20dp"
@@ -326,6 +392,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
             android:text="جبل سمرا"
+            setItemDetAddress="@{Detdata}"
             android:textColor="#767676"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -335,3 +402,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+
+
+</layout>

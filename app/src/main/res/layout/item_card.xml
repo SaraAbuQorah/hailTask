@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="data"
-            type="com.example.hailtask.data.model.Item" />
+            type="com.example.hailtask.data.model.itemss.Item" />
         <variable
             name="clickEvents"
             type="com.example.hailtask.ui.items.ItemsAdapter.ItemsClickEvents" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:onClick="@{()->clickEvents.selected(data)}"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -38,8 +37,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="380dp"
-                android:layout_height="238dp"
+                android:layout_width="360dp"
+                android:layout_height="200dp"
                 setItemsImage="@{data}"
                 android:background="@color/white"
                 android:padding="1px"
@@ -51,26 +50,29 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="180dp"
         android:layout_marginEnd="260dp"
+        setItemsButton="@{data}"
         android:src="@drawable/ic_shortcut_bookmark_borderz"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.177" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/name"
+        setItemsName="@{data}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="24dp"
         android:text="منتزه السمرا في حائل"
-        setItemsName="@{data}"
-        android:textSize="17sp"
         android:textColor="#35221C"
-        android:layout_marginStart="15dp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
@@ -79,10 +81,10 @@
         android:layout_width="11dp"
         android:layout_height="20dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         android:src="@drawable/locatio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 

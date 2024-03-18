@@ -2,11 +2,12 @@ package com.example.hailtask.ui.items
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hailtask.data.model.Data
-import com.example.hailtask.data.model.Item
+import com.example.hailtask.data.model.itemss.Item
 import com.example.hailtask.databinding.ItemCardBinding
 import com.example.hailtask.databinding.ItemCardBinding.inflate
 

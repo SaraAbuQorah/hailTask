@@ -1,6 +1,4 @@
-package com.example.hailtask.data.model
-
-import android.net.Uri
+package com.example.hailtask.data.model.itemss
 
 data class Item(
     val address: String,

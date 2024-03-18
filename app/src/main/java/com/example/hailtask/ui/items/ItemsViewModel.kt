@@ -1,21 +1,29 @@
 package com.example.hailtask.ui.items
 
 import android.util.Log
+import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.hailtask.data.Repos.ItemsRepo
-import com.example.hailtask.data.model.GetItems
-import com.example.hailtask.data.model.Item
+
+import com.example.hailtask.data.model.itemss.GetItems
+import com.example.hailtask.data.model.itemss.Item
+import com.example.hailtask.ui.itemDetails.ItemDetailsFragment
+import com.example.hailtask.ui.itemDetails.ItemDetailsViewModel
 import com.example.hailtask.util.Resource
 import kotlinx.coroutines.launch
 
-class ItemsViewModel(private val repository: ItemsRepo) : ViewModel(),
-    ItemsAdapter.ItemsClickEvents {
+class ItemsViewModel(private val repository: ItemsRepo) : ViewModel()
+     {
 
-     val itemsLiveData = MutableLiveData<Resource<GetItems>>()
+
+    val itemsLiveData = MutableLiveData<Resource<GetItems>>()
     init {
-         val auth="Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2hhaWwud2Vic2l0ZS9hcGkvbG9naW4iLCJpYXQiOjE3MDk1NDI1NjIsImV4cCI6MTkzMDM4MDk2MiwibmJmIjoxNzA5NTQyNTYyLCJqdGkiOiJST0lsTWVpMUxOUkJubzFsIiwic3ViIjoiNyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.5HCuXzsCaW5vqPjp7IsuDUgCdwXfIB9MGj8gjwijZlU"
         getItems()
     }
 
@@ -41,7 +49,5 @@ class ItemsViewModel(private val repository: ItemsRepo) : ViewModel(),
             }
         }
     }
-    override fun selected(data: Item) {
 
-    }
 }
