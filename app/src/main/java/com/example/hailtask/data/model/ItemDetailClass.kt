@@ -1,5 +1,10 @@
 package com.example.hailtask.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+
+@Entity(tableName = "ItemDetails")
 data class ItemDetailClass(
     val address: String,
     val close_time: String,
@@ -8,6 +13,7 @@ data class ItemDetailClass(
     val description: String,
     val email: Any,
     val end_date: Any,
+    @PrimaryKey
     val id: Int,
     val images: List<String>,
     val is_favorite: Int,

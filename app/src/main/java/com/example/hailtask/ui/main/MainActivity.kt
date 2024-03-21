@@ -10,6 +10,7 @@ import com.example.hailtask.data.Api.ItemDetails.ItemDetailsViewModelFactory
 import com.example.hailtask.data.Api.Items.ItemsMyViewModelFactory
 import com.example.hailtask.data.Repos.ItemDeatailsRepo
 import com.example.hailtask.data.Repos.ItemsRepo
+import com.example.hailtask.room.ItemDataBase
 import com.example.hailtask.ui.itemDetails.ItemDetailsViewModel
 import com.example.hailtask.ui.items.ItemsViewModel
 
@@ -25,13 +26,12 @@ class MainActivity : AppCompatActivity() {
         navHostFragment=supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
         navController=navHostFragment.navController
 
-        val itemRepo=ItemsRepo()
+        val itemDataBase = ItemDataBase.getDatabase(applicationContext)
+        val itemRepo=ItemsRepo(itemDataBase)
         val viewModelProviderFactory= ItemsMyViewModelFactory(itemRepo)
         viewModel= ViewModelProvider(this ,viewModelProviderFactory)[ItemsViewModel::class.java]
 
-        val itemDetRepo=ItemDeatailsRepo()
-        val DetviewModelProviderFactory= ItemDetailsViewModelFactory(itemDetRepo)
-        viewModel2= ViewModelProvider(this ,DetviewModelProviderFactory)[ItemDetailsViewModel::class.java]
+
 
     }
     }
