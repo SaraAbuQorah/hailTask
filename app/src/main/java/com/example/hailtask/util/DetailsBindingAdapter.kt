@@ -139,7 +139,6 @@ fun setItemsWebsite(linearLayout: LinearLayout, item: ItemDetailClass?) {
     val context = linearLayout.context
 
     linearLayout.setOnClickListener {
-        // Check if the website URL is available
         if (!item?.link.isNullOrEmpty()) {
             val intent = Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse(item?.link)

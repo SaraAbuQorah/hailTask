@@ -19,10 +19,10 @@ interface RoomDao {
      fun getItems(): LiveData<List<Item>>
 
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun insertItemDetails(item: ItemDetailClass)
-//
-//    @Query("Select * From ItemDetails")
-//    fun getItemDetails(): LiveData<ItemDetailClass>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+     fun insertItemDetails(item: ItemDetailClass)
+
+    @Query("Select * From ItemDetails WHERE id =:id")
+    fun getItemDetails(id: Int): LiveData<ItemDetailClass>?
 
 }

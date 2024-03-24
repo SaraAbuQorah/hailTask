@@ -1,6 +1,9 @@
 package com.example.hailtask.ui.itemDetails
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -13,14 +16,19 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.navArgs
+import androidx.viewpager.widget.ViewPager
 import com.example.hailtask.R
 import com.example.hailtask.data.Api.ItemDetails.ItemDetailsViewModelFactory
 import com.example.hailtask.data.Repos.ItemDeatailsRepo
+import com.example.hailtask.data.Repos.ItemsRepo
 import com.example.hailtask.data.model.GetItemDetails
 import com.example.hailtask.databinding.FragmentItemDetailsBinding
+import com.example.hailtask.room.ItemDataBase
 import com.example.hailtask.util.Resource
 import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.launch
 
 class ItemDetailsFragment : Fragment() {
     private lateinit var itemDetViewModel: ItemDetailsViewModel
@@ -43,50 +51,86 @@ class ItemDetailsFragment : Fragment() {
         }
         return binding.root
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        itemDetViewModel = ViewModelProvider(this, ItemDetailsViewModelFactory(ItemDeatailsRepo()))[ItemDetailsViewModel::class.java]
-        itemDetViewModel.getItemDet(_args.idArg)
-        itemDetViewModel.itemDetLiveData.observe(viewLifecycleOwner, Observer { ress ->
-            when (ress) {
-                is Resource.Error -> ress.let { Toast.makeText(context,"error", Toast.LENGTH_LONG).show()
-                    Log.e("error", "${ress.data}")}
-                is Resource.Loading -> ress.let { Toast.makeText(context,"loading", Toast.LENGTH_LONG).show() }
-                is Resource.Success -> ress.data?.data?.item_details?.let {itemDetails ->
-                    binding.detdata = itemDetails
-                    setImageViewPager(itemDetails.images)
-                }
 
-            }
-        })
+        val itemId = _args.idArg
+        val itemDataBase = context?.applicationContext?.let { ItemDataBase.getDatabase(it) }
+        val itemRepo= ItemDeatailsRepo(itemDataBase!!)
+        itemDetViewModel = ViewModelProvider(this, ItemDetailsViewModelFactory(itemRepo,itemId))[ItemDetailsViewModel::class.java]
+
+        val connectivityManager =
+            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork
+        val networkCapabilities = connectivityManager.getNetworkCapabilities(network)
+        val isConnected = networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+
+        if (isConnected) {
+            itemDetViewModel.fetchAndSaveItemDetails(itemId)
+            getdata(itemId)
+        }else{
+            getdata(itemId)
+            Toast.makeText(
+                requireContext(),
+                "No internet connection. Please check your network settings.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+
+
+
 
     }
+fun getdata(itemid:Int){
+    itemDetViewModel.itemDetailsLiveData?.observe(viewLifecycleOwner, Observer { resource ->
+        when (resource) {
+            is Resource.Loading -> {
+            }
+            is Resource.Success ->  resource.data?.let {itemDetails ->
+                binding.detdata = itemDetails
+                setImageViewPager(itemDetails.images!!)
+            }
+            is Resource.Error -> {
+                itemDetViewModel.fetchAndSaveItemDetails(itemid)
+                val errorMessage = resource.message ?: "Unknown error"
+                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+            }
+        }
+    })
+}
+
+
     fun setImageViewPager(images: List<String>) {
         val imageSliderAdapter = pagerAdapter(requireContext(), images)
         binding.viewPager.adapter = imageSliderAdapter
-        val tabLayout = binding.tabLayout
-        tabLayout.setupWithViewPager(binding.viewPager, true)
-        for (i in 0 until tabLayout.tabCount) {
-            val tab = tabLayout.getTabAt(i)
-            val customText = "${i + 1}من${images.size}"
-            tab?.text = customText
-            tab?.view?.layoutParams?.width = 180
-            tab?.view?.layoutParams?.height =80
-            tab?.view?.findViewById<TextView>(android.R.id.text1)?.setTextColor(resources.getColor(R.color.viewpagercolor))
-            tab?.view?.findViewById<TextView>(android.R.id.text1)?.textSize= 10F
-        }
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
+        binding.tabLayout.removeAllTabs()
+        binding.tabLayout.addTab(binding.tabLayout.newTab(), true)
 
 
+        updateTabText(binding.tabLayout, images.size)
+
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageSelected(position: Int) {
+                updateTabText(binding.tabLayout, images.size, position)
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
+            override fun onPageScrollStateChanged(state: Int) {}
         })
-
     }
+
+    private fun updateTabText(tabLayout: TabLayout, totalTabs: Int, currentPosition: Int = 0) {
+        // Ensure there is only one tab
+        if (tabLayout.tabCount == 1) {
+            val tab = tabLayout.getTabAt(0)
+            val customText = "${currentPosition + 1}من$totalTabs"
+            tab?.text = customText
+            tab?.view?.findViewById<TextView>(com.google.android.material.R.id.text)?.textSize=10f
+        }
+    }
+
 
 }

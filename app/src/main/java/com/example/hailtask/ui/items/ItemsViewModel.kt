@@ -28,6 +28,9 @@ class ItemsViewModel(private val repository: ItemsRepo) : ViewModel() {
     fun refreshItems() {
         viewModelScope.launch {
                 repository.getItemsAndSaveToDb()
+            if(itemsLiveData.value==null)
+                Log.e("No Data ","faild item save to database")
+            else Log.e("data ","the data have  saved to database")
         }
     }
 }

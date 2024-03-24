@@ -9,6 +9,7 @@
         <variable
             name="clickEvents"
             type="com.example.hailtask.ui.items.ItemsAdapter.ItemsClickEvents" />
+
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

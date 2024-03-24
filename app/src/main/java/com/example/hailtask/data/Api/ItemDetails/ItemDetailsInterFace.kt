@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface ItemDetailsInterFace {
     @GET("get_item_details")
-    suspend fun getItemDet(@Header("Authorization") authorization: String, @Header("api_key") apiKey: String,@Query("id") id:Int): Response<GetItemDetails>
+     fun getItemDet(@Header("Authorization") authorization: String, @Header("api_key") apiKey: String,@Query("id") id:Int): Response<GetItemDetails>
 
 
 }
