@@ -16,45 +16,18 @@ import kotlinx.coroutines.launch
 class ItemDeatailsRepo(private val itemDatabase: ItemDataBase) {
 
     private val itemDetailsHelper = ItemDetailsHelper.api
-    fun getItemDetailsLiveData(id: Int): LiveData<Resource<ItemDetailClass>> {
-        var i:LiveData<Resource<ItemDetailClass>>
+    fun getItemDetailsLiveData(id: Int): LiveData<ItemDetailClass> {
         val existingItemDetails = itemDatabase.itemDao().getItemDetails(id)
-         if (existingItemDetails != null) {
-            i=existingItemDetails.map { itemDetails ->
-                Log.e("here","${itemDetails}")
-                Resource.Success(itemDetails)
-            }
-        } else {
-
-             return fetchAndSaveItemDetails(id)
-        }
-        return i
+        return existingItemDetails
     }
 
-    fun fetchAndSaveItemDetails(id: Int): LiveData<Resource<ItemDetailClass>> {
-        val resultLiveData = MutableLiveData<Resource<ItemDetailClass>>()
-        GlobalScope.launch {
-            try {
-                val response = itemDetailsHelper.getItemDet(Constants.auth, Constants.apiKey, id)
-                if (response.isSuccessful) {
-                    val itemDetailsResponse = response.body()
-                    itemDetailsResponse?.let { itemDetailsResponse ->
-                        val itemDetails = itemDetailsResponse.data.item_details
-                        saveItemDetailsToDb(itemDetails)
-                        resultLiveData.postValue(Resource.Success(itemDetails))
-                    } ?: resultLiveData.postValue(Resource.Error("Empty response body"))
-                } else {
-                    Log.e("eeee", "Failed to fetch item details: ${response.message()}")
-                    resultLiveData.postValue(Resource.Error("Failed to fetch item details: ${response.message()}"))
-                }
-            } catch (e: Exception) {
-                resultLiveData.postValue(Resource.Error("An error occurred: ${e.message}"))
-            }
-        }
-        return resultLiveData
-    }
-    private  fun saveItemDetailsToDb(itemDetails: ItemDetailClass) {
+
+    fun saveItemDetailsToDb(itemDetails: ItemDetailClass) {
         itemDatabase.itemDao().insertItemDetails(itemDetails)
-        Log.d("ItemDeatailsRepo", "Item details added to the database")
+        Log.d("ItemDetailsRepo", "Item details added to the database")
     }
+
+    suspend fun getItemDet(auth: String, apiKey: String, itemId: Int) =
+        itemDetailsHelper.getItemDet(auth, apiKey, itemId)
+
 }

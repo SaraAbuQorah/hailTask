@@ -14,27 +14,23 @@ class ItemsRepo(private val itemDatabase: ItemDataBase) {
 
     private val itemsHelper = ItemsHelper.api
 
-    fun getItemsLiveData(): LiveData<Resource<List<Item>>> {
-        return itemDatabase.itemDao().getItems().map { items ->
-            Resource.Success(items)
-        }
+    fun getItemsLiveData(): LiveData<List<Item>> {
+        return itemDatabase.itemDao().getItems()
     }
 
-    suspend fun getItemsAndSaveToDb(): Resource<Unit> {
-            return try {
-                val response = itemsHelper.getItems(Constants.auth, Constants.apiKey)
-                if (response.isSuccessful) {
-                    response.body()?.data?.items?.let { items ->
-                        saveItemsToDb(items)
-                    }
-                    Resource.Success(Unit)
-                } else {
-                    Resource.Error("Failed to fetch items: ${response.message()}")
+    suspend fun getItemsAndSaveToDb(): List<Item>? {
+            val response = itemsHelper.getItems(Constants.auth, Constants.apiKey)
+            if (response.isSuccessful) {
+                response.body()?.data?.items?.let { items ->
+                    saveItemsToDb(items)
+                   return items
                 }
-            } catch (e: Exception) {
-                Resource.Error("An error occurred: ${e.message}")
+            } else {
+                null
             }
-        }
+        return null
+    }
+
 
     private suspend fun saveItemsToDb(items: List<Item>) {
         itemDatabase.itemDao().insert(items)

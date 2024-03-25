@@ -58,21 +58,11 @@ class firstFragment : Fragment() ,ItemsAdapter.ItemsClickEvents {
 
 
         itemsViewModel.itemsLiveData.observe(viewLifecycleOwner, Observer { resource ->
-            when (resource) {
-                is Resource.Error -> {
-                    if(isNetworkAvailable(requireContext())){
-                    Toast.makeText(requireContext(), "Error: ${resource.message}", Toast.LENGTH_SHORT).show()
-                    Log.e("Error", resource.message ?: "Unknown error")
-                }}
-                is Resource.Loading -> {
-                    Toast.makeText(requireContext(), "Loading...", Toast.LENGTH_SHORT).show()
-                }
-                is Resource.Success -> {
-                    resource.data?.let { items ->
+            if(resource!=null) {
+                    resource?.let { items ->
                         setItemsAdapter(items)
                     }
                 }
-            }
         })
     }
     fun setItemsAdapter(item: List<Item>) {

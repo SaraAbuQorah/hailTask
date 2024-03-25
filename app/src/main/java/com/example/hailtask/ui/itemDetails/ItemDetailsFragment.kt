@@ -61,46 +61,18 @@ class ItemDetailsFragment : Fragment() {
         val itemRepo= ItemDeatailsRepo(itemDataBase!!)
         itemDetViewModel = ViewModelProvider(this, ItemDetailsViewModelFactory(itemRepo,itemId))[ItemDetailsViewModel::class.java]
 
-        val connectivityManager =
-            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val network = connectivityManager.activeNetwork
-        val networkCapabilities = connectivityManager.getNetworkCapabilities(network)
-        val isConnected = networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
 
-        if (isConnected) {
-            itemDetViewModel.fetchAndSaveItemDetails(itemId)
-            getdata(itemId)
-        }else{
-            getdata(itemId)
-            Toast.makeText(
-                requireContext(),
-                "No internet connection. Please check your network settings.",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-
-
-
+        itemDetViewModel.itemDetails?.observe(viewLifecycleOwner, Observer { resource ->
+            if(resource!=null)
+            {
+                binding.detdata = resource
+                setImageViewPager(resource.images!!)
+            }
+        })
 
 
     }
-fun getdata(itemid:Int){
-    itemDetViewModel.itemDetailsLiveData?.observe(viewLifecycleOwner, Observer { resource ->
-        when (resource) {
-            is Resource.Loading -> {
-            }
-            is Resource.Success ->  resource.data?.let {itemDetails ->
-                binding.detdata = itemDetails
-                setImageViewPager(itemDetails.images!!)
-            }
-            is Resource.Error -> {
-                itemDetViewModel.fetchAndSaveItemDetails(itemid)
-                val errorMessage = resource.message ?: "Unknown error"
-                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
-            }
-        }
-    })
-}
+
 
 
     fun setImageViewPager(images: List<String>) {

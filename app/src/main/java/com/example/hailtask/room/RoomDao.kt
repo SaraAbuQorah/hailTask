@@ -23,6 +23,6 @@ interface RoomDao {
      fun insertItemDetails(item: ItemDetailClass)
 
     @Query("Select * From ItemDetails WHERE id =:id")
-    fun getItemDetails(id: Int): LiveData<ItemDetailClass>?
+    fun getItemDetails(id: Int): LiveData<ItemDetailClass>
 
 }
