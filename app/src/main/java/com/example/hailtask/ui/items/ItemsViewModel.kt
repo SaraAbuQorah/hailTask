@@ -15,8 +15,12 @@ import com.example.hailtask.data.model.itemss.Item
 import com.example.hailtask.ui.itemDetails.ItemDetailsFragment
 import com.example.hailtask.ui.itemDetails.ItemDetailsViewModel
 import com.example.hailtask.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-class ItemsViewModel(private val repository: ItemsRepo) : ViewModel() {
+import javax.inject.Inject
+
+@HiltViewModel
+class ItemsViewModel  @Inject constructor(private val repository: ItemsRepo) : ViewModel() {
     private val mutableLiveData: MutableLiveData<List<Item>> = MutableLiveData()
     val itemsLiveData: LiveData<List<Item>> = mutableLiveData.switchMap { repository.getItemsLiveData() }
 

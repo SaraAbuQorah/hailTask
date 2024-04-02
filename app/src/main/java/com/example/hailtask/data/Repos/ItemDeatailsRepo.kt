@@ -4,6 +4,7 @@ import android.os.AsyncTask
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.hailtask.data.Api.ItemDetails.ItemDetailsHelper
+import com.example.hailtask.data.Api.ItemDetails.ItemDetailsInterFace
 import com.example.hailtask.data.model.GetItemDetails
 import com.example.hailtask.data.model.ItemDetailClass
 import com.example.hailtask.room.ItemDataBase
@@ -11,13 +12,17 @@ import com.example.hailtask.util.Constants
 import com.example.hailtask.util.Resource
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class ItemDeatailsRepo(private val itemDatabase: ItemDataBase) {
+class ItemDeatailsRepo  @Inject constructor(private val itemDatabase: ItemDataBase,
+                       private val api : ItemDetailsInterFace) {
 
-    private val itemDetailsHelper = ItemDetailsHelper.api
+
     fun getItemDetailsLiveData(id: Int): LiveData<ItemDetailClass> {
         val existingItemDetails = itemDatabase.itemDao().getItemDetails(id)
+        Log.d("ItemDetailsRepoDB", "Item details added to the database")
+
         return existingItemDetails
     }
 
@@ -28,6 +33,6 @@ class ItemDeatailsRepo(private val itemDatabase: ItemDataBase) {
     }
 
     suspend fun getItemDet(auth: String, apiKey: String, itemId: Int) =
-        itemDetailsHelper.getItemDet(auth, apiKey, itemId)
+        api.getItemDet(auth, apiKey, itemId)
 
 }

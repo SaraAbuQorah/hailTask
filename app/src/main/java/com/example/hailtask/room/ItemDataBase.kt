@@ -1,5 +1,6 @@
 package com.example.hailtask.room
 
+import android.app.Application
 import android.content.Context
 import android.provider.CalendarContract.Instances
 import androidx.room.Database
@@ -18,7 +19,7 @@ abstract class ItemDataBase : RoomDatabase() {
         @Volatile
         private var instance: ItemDataBase? = null
 
-        fun getDatabase(context: Context): ItemDataBase {
+        fun getDatabase(context: Application): ItemDataBase {
             if (instance == null) {
                 instance = Room.databaseBuilder(
                     context.applicationContext,
