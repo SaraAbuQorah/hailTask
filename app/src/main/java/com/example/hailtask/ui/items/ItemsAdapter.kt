@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,14 +13,14 @@ import com.example.hailtask.databinding.ItemCardBinding
 import com.example.hailtask.databinding.ItemCardBinding.inflate
 
 class ItemsAdapter(private val clickListener: ItemsClickEvents) :
-    ListAdapter<Item, ItemsAdapter.ViewHolder>(ItemDiffCallback()) {
+    PagingDataAdapter<Item, ItemsAdapter.ViewHolder>(ItemDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(clickListener, item)
+        holder.bind(clickListener, item!!)
     }
 
 

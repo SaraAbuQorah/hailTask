@@ -3,6 +3,7 @@ package com.example.hailtask.data.model.itemss
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+
 @Entity(tableName = "Items")
 data class Item(
     val address: String,

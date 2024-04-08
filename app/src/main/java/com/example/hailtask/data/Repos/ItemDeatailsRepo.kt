@@ -1,17 +1,10 @@
 package com.example.hailtask.data.Repos
 
-import android.os.AsyncTask
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.hailtask.data.Api.ItemDetails.ItemDetailsHelper
 import com.example.hailtask.data.Api.ItemDetails.ItemDetailsInterFace
-import com.example.hailtask.data.model.GetItemDetails
 import com.example.hailtask.data.model.ItemDetailClass
 import com.example.hailtask.room.ItemDataBase
-import com.example.hailtask.util.Constants
-import com.example.hailtask.util.Resource
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 

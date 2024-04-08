@@ -1,8 +1,6 @@
 package com.example.hailtask
 
 import android.app.Application
-import android.content.Context
-import com.example.hailtask.data.Api.ItemDetails.ItemDetailsHelper
 import com.example.hailtask.data.Api.ItemDetails.ItemDetailsInterFace
 import com.example.hailtask.data.Api.Items.ItemsInterface
 import com.example.hailtask.data.Repos.ItemDeatailsRepo

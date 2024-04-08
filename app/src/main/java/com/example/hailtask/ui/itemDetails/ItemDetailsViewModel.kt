@@ -30,22 +30,22 @@ class ItemDetailsViewModel @Inject  constructor(private val repositoryDet: ItemD
     }
     fun fetchAndSaveItemDetails(itemId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val response = repositoryDet.getItemDet(Constants.auth, Constants.apiKey, itemId)
-                if (response.isSuccessful) {
-                    val itemDetailsResponse = response.body()
-                    itemDetailsResponse?.let { itemDetailsResponse ->
-                        val itemDetails = itemDetailsResponse.data.item_details
-                        repositoryDet.saveItemDetailsToDb(itemDetails)
+                try {
+                    val response = repositoryDet.getItemDet(Constants.auth, Constants.apiKey, itemId)
+                    if (response.isSuccessful) {
+                        val itemDetailsResponse = response.body()
+                        itemDetailsResponse?.let { itemDetailsResponse ->
+                            val itemDetails = itemDetailsResponse.data.item_details
+                            repositoryDet.saveItemDetailsToDb(itemDetails)
 
+                        }
+                    } else {
+                        Log.e("eeee", "Failed to fetch item details: ${response.message()}")
                     }
-                } else {
-                    Log.e("eeee", "Failed to fetch item details: ${response.message()}")
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
-        }
     }
 
 

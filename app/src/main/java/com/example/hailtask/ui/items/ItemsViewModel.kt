@@ -1,42 +1,30 @@
 package com.example.hailtask.ui.items
 
-import android.content.Context
 import android.util.Log
-import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.*
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.hailtask.data.Repos.ItemsRepo
-
-import com.example.hailtask.data.model.itemss.GetItems
 import com.example.hailtask.data.model.itemss.Item
-import com.example.hailtask.ui.itemDetails.ItemDetailsFragment
-import com.example.hailtask.ui.itemDetails.ItemDetailsViewModel
-import com.example.hailtask.util.Resource
+import com.example.hailtask.util.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
+
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class ItemsViewModel  @Inject constructor(private val repository: ItemsRepo) : ViewModel() {
-    private val mutableLiveData: MutableLiveData<List<Item>> = MutableLiveData()
-    val itemsLiveData: LiveData<List<Item>> = mutableLiveData.switchMap { repository.getItemsLiveData() }
+@HiltViewModel()
+class ItemsViewModel @Inject constructor(private val repository: ItemsRepo) : ViewModel() {
+    val itemsdata = Pager(PagingConfig(pageSize = 1)) {
+        ItemsPagingSource(repository)
+    }.flow.cachedIn(viewModelScope)
 
-    init {
-        refreshItems()
-    }
+    val itemsFromDb: LiveData<PagingData<Item>> = repository.getItemsFromDb().asLiveData()
 
-    fun refreshItems() {
-        viewModelScope.launch {
-            val result = repository.getItemsAndSaveToDb()
-            if (result!=null) {
-                mutableLiveData.postValue(result)
-                Log.e("data ", "the data have saved to database")
-            } else  {
-                Log.e("No Data ", "failed item save to database")
-            }
-        }
-    }
+
 }
+
