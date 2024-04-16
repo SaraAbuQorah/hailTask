@@ -3,23 +3,15 @@ package com.example.hailtask.util
 import android.content.Intent
 import android.net.Uri
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.example.hailtask.R
-import com.example.hailtask.data.model.GetItemDetails
 import com.example.hailtask.data.model.ItemDetailClass
-import com.example.hailtask.generated.callback.OnClickListener
-import com.example.hailtask.ui.itemDetails.ItemDetailsFragmentDirections
-import com.google.android.material.imageview.ShapeableImageView
+
 
 
 @BindingAdapter("setItemDetName")

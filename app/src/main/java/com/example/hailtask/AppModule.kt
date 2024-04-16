@@ -6,6 +6,7 @@ import com.example.hailtask.data.Api.Items.ItemsInterface
 import com.example.hailtask.data.Repos.ItemDeatailsRepo
 import com.example.hailtask.data.Repos.ItemsRepo
 import com.example.hailtask.room.ItemDataBase
+import com.example.hailtask.room.RoomDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -60,6 +61,11 @@ object AppModule {
     @Singleton
     fun provideItemDetailsRepository(api:ItemDetailsInterFace,database:ItemDataBase):ItemDeatailsRepo{
         return ItemDeatailsRepo(database,api)
+    }
+    @Provides
+    @Singleton
+    fun RoomDao(database:ItemDataBase):RoomDao{
+        return database.itemDao()
     }
 
 

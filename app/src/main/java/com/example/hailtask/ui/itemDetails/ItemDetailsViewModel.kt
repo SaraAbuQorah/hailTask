@@ -2,12 +2,9 @@ package com.example.hailtask.ui.itemDetails
 
 import android.util.Log
 import androidx.lifecycle.*
-
 import com.example.hailtask.data.Repos.ItemDeatailsRepo
 import com.example.hailtask.data.model.ItemDetailClass
 import com.example.hailtask.util.Constants
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

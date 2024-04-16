@@ -16,7 +16,6 @@ import androidx.viewpager.widget.ViewPager
 import com.example.hailtask.databinding.FragmentItemDetailsBinding
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint

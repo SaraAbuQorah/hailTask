@@ -16,8 +16,11 @@ interface RoomDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item:List<Item>)
 
-    @Query("Select * From Items")
+    @Query("Select * From Items ")
     fun getItems(): PagingSource<Int, Item>
+
+    @Query("DELETE FROM Items")
+    suspend fun clearAll()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertItemDetails(item: ItemDetailClass)
