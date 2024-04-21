@@ -43,9 +43,11 @@ class RemoteMediatorItems(
 
             val apiResponse = networkService.getItems(Constants.auth,Constants.apiKey, page,
                 state.config.pageSize)
-
-            val endOfPagination = apiResponse.body()?.data?.items?.size!! < state.config.pageSize
             if (apiResponse.isSuccessful) {
+                val endOfPagination = apiResponse.body()?.data?.items?.isEmpty() ?: true
+                if (endOfPagination) {
+                    return MediatorResult.Success(endOfPaginationReached = true)
+                }
 
                 apiResponse.body()?.let {
                     if (loadType == LoadType.REFRESH) {

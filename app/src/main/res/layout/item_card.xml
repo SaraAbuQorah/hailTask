@@ -51,7 +51,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="260dp"
         setItemsButton="@{data}"
         android:src="@drawable/ic_shortcut_bookmark_borderz"
@@ -72,6 +72,8 @@
         android:text="منتزه السمرا في حائل"
         android:textColor="#35221C"
         android:textSize="17sp"
+
+        android:fontFamily="@font/abdomaster_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +98,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="4dp"
         android:text="جبل سمرا"
+        android:fontFamily="@font/abdomaster_medium"
         setItemsAddress="@{data}"
         android:textColor="#767676"
         android:textSize="15sp"

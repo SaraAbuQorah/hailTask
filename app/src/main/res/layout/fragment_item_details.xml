@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data >
 
         <variable
@@ -10,11 +12,9 @@
             name="click"
             type="android.view.View.OnClickListener"/>
          </data>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.itemDetails.ItemDetailsFragment">
 
 
@@ -99,9 +99,11 @@
             android:textAlignment="viewEnd"
             android:layout_marginEnd="25dp"
             setItemDetName="@{Detdata}"
+
             android:text="منتزه السمرا في حائل"
             android:textColor="#35221C"
             android:textSize="30sp"
+            android:fontFamily="@font/abdomasterbold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.993"
             app:layout_constraintStart_toStartOf="parent"
@@ -128,6 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="الوصف "
+            android:fontFamily="@font/abdomaster_medium"
             android:textAlignment="viewEnd"
             android:textColor="#000000"
             android:textSize="15sp"
@@ -147,6 +150,7 @@
             setItemsDisc="@{Detdata}"
             android:text="تجربة السفر إلى حائل لا تكتمل دون تخصيص أوقات ممتعة للتجول في واحدة من أشهر وجهاتها السياحية، حديقة السمراء، الموجودة على سفوح الجبل الشهير جبل السمراء. "
             android:textColor="#000000"
+            android:fontFamily="@font/abdomasterbook"
             android:textAlignment="viewEnd"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -162,6 +166,7 @@
             android:textAlignment="viewEnd"
             android:textColor="#C18E55"
             android:textSize="13sp"
+            android:fontFamily="@font/abdomaster_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.929"
             app:layout_constraintStart_toStartOf="parent"
@@ -204,6 +209,7 @@
                     android:layout_height="27dp"
                     android:layout_marginTop="11dp"
                     android:text="الموقع الالكتروني"
+                    android:fontFamily="@font/abdomaster_medium"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="10dp"
@@ -234,6 +240,7 @@
                     android:layout_height="27dp"
                     android:layout_marginTop="11dp"
                     android:text="الاتجاه الى الموقع"
+                    android:fontFamily="@font/abdomaster_medium"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="10dp"
@@ -263,6 +270,7 @@
                     android:layout_height="27dp"
                     android:layout_marginTop="11dp"
                     android:text="البريد الالكتروني"
+                    android:fontFamily="@font/abdomaster_medium"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="10dp"
@@ -293,6 +301,7 @@
                         android:layout_height="27dp"
                         android:layout_marginTop="11dp"
                         android:text="الاتصال"
+                        android:fontFamily="@font/abdomaster_medium"
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="10dp"
@@ -323,6 +332,7 @@
             android:layout_marginTop="18dp"
             android:layout_marginEnd="8dp"
             android:text="الفتح"
+            android:fontFamily="@font/abdomaster_medium"
             android:textAlignment="viewEnd"
             android:textColor="#454545"
             android:textSize="14sp"
@@ -336,6 +346,7 @@
             android:layout_marginTop="18dp"
             android:layout_marginEnd="19dp"
             android:text="٩:٠٠ "
+            android:fontFamily="@font/abdomasterbook"
             setItemsTimeOpen="@{Detdata}"
             android:textAlignment="viewEnd"
             android:textColor="#767676"
@@ -349,6 +360,7 @@
             android:layout_marginTop="18dp"
             android:layout_marginEnd="32dp"
             android:text="الأغلاق"
+            android:fontFamily="@font/abdomaster_medium"
             android:textAlignment="viewEnd"
             android:textColor="#454545"
             android:layout_marginBottom="16dp"
@@ -364,6 +376,7 @@
             android:layout_marginEnd="19dp"
             setItemsTimeClose="@{Detdata}"
             android:text="٨:٠٠ "
+            android:fontFamily="@font/abdomasterbook"
             android:layout_marginBottom="16dp"
             android:textAlignment="viewEnd"
             android:textColor="#767676"
@@ -394,6 +407,7 @@
             android:text="جبل سمرا"
             setItemDetAddress="@{Detdata}"
             android:textColor="#767676"
+            android:fontFamily="@font/abdomaster_medium"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/locImg"
